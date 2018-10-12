@@ -37,21 +37,21 @@
 \area{Informática Industrial} % [Engenharia Biom\'edica] ou [Inform\'atica Industrial] ou [Telem\'atica]
 
 \documento{Dissertação} % [Disserta\c{c}\~ao] ou [Tese]
-\nivel{Mestrado} % [Mestrado] ou [Doutorado]
-\titulacao{Mestre} % [Mestre] ou [Doutor]
+\nivel{Pos-graduação} % [Mestrado] ou [Doutorado]
+\titulacao{Especialista} % [Mestre] ou [Doutor]
 
 \titulo{{Sistema autonomo de gerenciamento de luzes}} % titulo do trabalho em portugues
-\title{\MakeUppercase{Title in English}} % titulo do trabalho em ingles
+\title{\MakeUppercase{Self-contained lighting management system}} % titulo do trabalho em ingles
 
 \autor{Luis Denis Pliskievski de Lara} % autor do trabalho
 \cita{LARA, Luis Denis Pliskievski de} % sobrenome (maiusculas), nome do autor do trabalho
 
-\palavraschave{Palavra-chave 1, Palavra-chave 2, ...} % palavras-chave do trabalho
-\keywords{Keyword 1, Keyword 2, ...} % palavras-chave do trabalho em ingles
+\palavraschave{IOT, nodeMCU, ESP8266, energia, controle, autonomo} % palavras-chave do trabalho
+\keywords{IOT, nomeMCU, ESP8266, energy, contro, self-contained} % palavras-chave do trabalho em ingles
 
 \comentario{\UTFPRdocumentodata\ apresentada ao \UTFPRprogramadata\ da \ABNTinstituicaodata\ como requisito parcial para obtenção do grau de ``\UTFPRtitulacaodata\ em Ciências'' -- Área de Concentração: \UTFPRareadata.}
 
-\orientador{Nome do Orientador} % nome do orientador do trabalho
+    \orientador{Glauber Brante} % nome do orientador do trabalho
 %\orientador[Orientadora:]{Nome da Orientadora} % <- no caso de orientadora, usar esta sintaxe
 %\coorientador{Nome do Co-orientador} % nome do co-orientador do trabalho, caso exista
 %\coorientador[Co-orientadora:]{Nome da Co-orientadora} % <- no caso de co-orientadora, usar esta sintaxe
@@ -78,7 +78,7 @@
 % Lembre-se de que a ficha catalografica eh impressa no verso da folha de rosto
 % Ficha catalografica
 \fichacatpum{T137}
-\fichacatautor{Sobrenome, Nome}
+\fichacatautor{Lara, Luis Denis Pliskievski de}
 \fichacatpgbib{\pageref{bibstart}-\pageref{bibend}}
 \fichacatpalcha{1. Teoria do controle. 2. Redes de comutaÃ§Ã£o. 3. TCP/IP (Protocolo de rede de computaÃ§Ã£o), ...}
 \fichacatpdois{CDD (22. ed.) 621.3}
@@ -136,26 +136,38 @@ Abstract text (maximum of 500 words).
 %---------- Primeiro Capitulo ----------
 \chapter{Introdução}
 
-O presente documento \'e um exemplo de uso do estilo de formata\c{c}\~ao \LaTeX\ elaborado para atender \`as Normas para Elabora\c{c}\~ao de Trabalhos Acad\^emicos da UTFPR. O estilo de formata\c{c}\~ao {\ttfamily normas-utf-tex.cls} tem por base o pacote \textsc{abn}\TeX~-- cuja leitura da documenta\c{c}\~ao \cite{abnTeX2009} \'e fortemente sugerida~-- e o estilo de formata\c{c}\~ao \LaTeX\ da UFPR.
+Com o advento da internet e evolução, temos a possibilidade de criar dispositivos inteligentes para nos auxiliar em situações corriqueiras, como controle de acesso, controle de frotas, gerenciamento de energia e água.
 
-Para melhor entendimento do uso do estilo de formata\c{c}\~ao {\ttfamily normas-utf-tex.cls}, aconselha-se que o potencial usu\'ario analise os comandos existentes no arquivo \TeX\ ({\ttfamily modelo\_*.tex}) e os resultados obtidos no arquivo PDF ({\ttfamily modelo\_*.pdf}) depois do processamento pelo software \LaTeX\ + \textsc{Bib}\TeX~\cite{LaTeX2009,BibTeX2009}. Recomenda-se a consulta ao material de refer\^encia do software para a sua correta utiliza\c{c}\~ao~\cite{Lamport1986,Buerger1989,Kopka2003,Mittelbach2004}.
+Nesse trabalho iremos desmostrar um sistema inteliganete de gerenciamento de luzes para comercio, empresas e mesmo casas.
 
-\begin{quadro}[!htb]
-	\centering
-	\caption[Exemplo de um quadro]{Exemplo de um quadro mostrando a correla\c{c}\~ao entre x e y.}
-	\label{tab:correlacao}
-	\begin{tabular}{cc}
-		\hline 
-		x & y \\
-		\hline
-		1 & 2 \\
-		3 & 4 \\
-		5 & 6 \\
-		7 & 8 \\
-		\hline 
-	\end{tabular}
-	\fonte{Autoria pr\'opria.}
-\end{quadro}
+Para o desenvolvimento do recurso usaremos os itens:
+
+\begin{itemize}
+        \item ESP8266 - NomeMCU V3
+        \item Sensor de corrente ACS712
+        \item Servidor MQTT
+\end{itemize}
+
+
+
+%O presente documento \'e um exemplo de uso do estilo de formata\c{c}\~ao \LaTeX\ elaborado para atender \`as Normas para Elabora\c{c}\~ao de Trabalhos Acad\^emicos da UTFPR. O estilo de formata\c{c}\~ao {\ttfamily normas-utf-tex.cls} tem por base o pacote \textsc{abn}\TeX~-- cuja leitura da documenta\c{c}\~ao \cite{abnTeX2009} \'e fortemente sugerida~-- e o estilo de formata\c{c}\~ao \LaTeX\ da UFPR.
+
+%%\begin{quadro}[!htb]
+%	\centering
+%	\caption[Exemplo de um quadro]{Exemplo de um quadro mostrando a correla\c{c}\~ao entre x e y.}
+%	\label{tab:correlacao}
+%	\begin{tabular}{cc}
+%		\hline 
+%		x & y \\
+%		\hline
+%		1 & 2 \\
+%		3 & 4 \\
+%		5 & 6 \\
+%		7 & 8 \\
+%		\hline 
+%	\end{tabular}
+%	\fonte{Autoria pr\'opria.}
+%\end{quadro}
 
 \section{Motivação}
 
