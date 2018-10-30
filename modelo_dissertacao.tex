@@ -197,12 +197,21 @@ Pois isso optei em não usar a rede MASH e manter todos os nós comunicando dire
 
 Caso a rede esteja indisponível por alguma motivo o nó poderá armazenar informações em sua memória de até 7 dias.
 
-\subsection{Allegro ACS712}
+\subsection{Sensor de corrente Allegro ACS712}
 O medidor de corrente Allegro ACS712 pode trabalhar com correntes de -30A à +30A amperes, mais que suficiente para os padrões que usamos em estrutura de iluminação, aonde as correntes geralmente não são maiores que 10A.
 
 A taxa de amostragem durante o desenvolvimento deve um pequena diferença comparando com o resultado de multimetro. Essa diferença ficou entre 55mA e 70mA. Isso acontece devido ao ruído do L106 e o ruído do próprio Allegro ACS712.
 
-Para calular o consumo utilizamos algumas informações do padrão brasileiro, como a taxa de amostragem de 60Hz de nossas redes. Com base nessas informações e utilizando a biblioteca 
+Para calular o consumo utilizamos algumas informações do padrão brasileiro, como a taxa de amostragem de 60Hz de nossas redes. Com base nessas informações e utilizando a biblioteca EmonLib, a biblioteca originalmente foi desenvolvida para Arduíno mas é compatível com o ESP8266 utilizado.
+
+Uma vez realizada a medição os dados são enviados via MQTT para serem exibidos no front-end.
+
+\subsection{Sensor de presença PIR DYP-ME003}
+
+Também utilizamos um sensor de presença para ter um controle automatico de uso de salas, 
+
+Com isso no momento que a pessoa entra da sala o sensor envia um sinal que acende as lampadas automaticamente e começa a bilhetagem das luzes naquela sala.
+
 
 %---------- Terceiro Capitulo ----------
 \chapter{Conclusão}
