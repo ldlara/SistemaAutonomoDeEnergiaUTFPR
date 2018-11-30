@@ -41,7 +41,7 @@
 \nivel{Pos-graduação} % [Mestrado] ou [Doutorado]
 \titulacao{Especialista} % [Mestre] ou [Doutor]
 
-\titulo{{Sistema autonomo de gerenciamento de luzes}} % titulo do trabalho em portugues
+\titulo{{Sistema autônomo de gerenciamento de luzes}} % titulo do trabalho em portugues
 \title{\MakeUppercase{Self-contained lighting management system}} % titulo do trabalho em ingles
 
 \autor{Luis Denis Pliskievski de Lara} % autor do trabalho
@@ -96,13 +96,13 @@ Dedico esse trabalho em memória de minha mãe que sempre me incentivou a buscar
 
 % agradecimentos (opcional)
 \begin{agradecimentos}
-A todos que de alguma forma me apoiaram na trajetoria, não deixaram eu desistir e mais do que nunca acreditaram em mim em momentos que eu dúvida da minha capacidade.
+A todos que de alguma forma me apoiaram na trajetoria, não deixaram eu desistir e mais do que nunca acreditaram em mim em momentos que eu dúvidava da minha capacidade.
 Agradeço ao meu colega Konrado Biernet por me ajudar a desenvolver esse trabalho e a minha namorada Aline Frassato, por compreender os tempos que tive que deixa-la sozinha.
 \end{agradecimentos}
 
 %resumo
 \begin{resumo}
-Essa dissertação mostra de forma pratica o uso da internet da coisas para buscar eficiência no uso de recursos energicos voltados para gerenciamento de luz, onde hoje, temos um gasto substâncial e muitas vezes mal administrado.
+Essa dissertação mostra de forma pratica o uso da internet da coisas para buscar eficiência no uso de recursos energéticos voltados para gerenciamento de luz, onde hoje, temos um gasto substâncial e muitas vezes mal administrado.
 \end{resumo}
 
 %abstract
@@ -132,19 +132,19 @@ Com o advento da internet e evolução, temos a possibilidade de criar dispositi
 
 Nesse trabalho iremos desmostrar um sistema inteligente de gerenciamento de luzes para comercio, empresas e mesmo casas.
 
-Alinhando assim a tecnologia com o uso conciênte de energia elétrica, trazendo maior eficiência no consumo e de contra partinda uma redução de custos.
+Alinhando assim a tecnologia com o uso consciênte de energia elétrica, trazendo maior eficiência no consumo e de contra partinda uma redução de custos.
 
 \section{Motivação}
 
 Hoje temos um grande desperdicio de energia mantendo luzes acessas em lugares que não estão sendo usados, como sala de reunião, banheiros, iluminação ornamental, luzes internas e externas.
 
-A ideia com o uso desse dispositivo é mensurar o consumo e mostrar através de números a diferença de gastos, quando usamos de forma conciênte a energia, facilitando a tomada de decisão para a administração e também expandir o estudo futuramente sobre o controle sobre outros meios de consumo de energia, planejanto ambientes inteligêntes, baseando em efiência energética.
+A ideia com o uso desse dispositivo é mensurar o consumo e mostrar através de números a diferença de gastos, quando usamos de forma consciênte a energia, facilitando a tomada de decisão para a administração e também expandir o estudo futuramente sobre o controle sobre outros meios de consumo de energia, planejanto ambientes inteligêntes, baseando em efiência energética.
 
 \section{Objetivos}
 
 \subsection{Objetivo Geral}
 
-A ideia principal é conseguir mostrar através de gráficos e números o quando é possível economizar e tornar-se mais eficiente na questão de gastos referente a utilização de energia elétrica.
+A ideia principal é conseguir mostrar através de gráficos e números o quanto é possível economizar e tornar-se mais eficiente na questão de gastos referente a utilização de energia elétrica.
 
 Ser uma ferramenta que auxilia no gerenciamento de gastos do estabelecimento, trazer previsões e manter históricos de consumo, afim de gerar informações para tomadas de decisão futuras.
 
@@ -165,7 +165,7 @@ Ser uma ferramenta que auxilia no gerenciamento de gastos do estabelecimento, tr
  
 Para o desenvolvimento do firmware do projeto foi utilizando a linguagem C++   \cite{Altabooks} e recursos HTTP.
 
-Os insumos utilizados para o desenvolvimento do prototipo para testes foram:
+Os insumos utilizados para o desenvolvimento do protótipo para testes foram:
 
 \begin{itemize}
        	\item ESP8266 - NomeMCU V3
@@ -205,7 +205,7 @@ Abaixo uma imagem mostrando o hardware.
 
 Durante o processo de desenvolvimento, identificamos uma limitação quanto ao número de conexões simultaneas a um único NodeMCU. 
 
-Não foi possível estabelecer mais que 5 conexões simultaneas, quando a sexta conexão era estabelecida, a mais antiga era perdida, algo que não possível contornar no momento.
+Não foi possível estabelecer mais que 5 conexões simultâneas, quando a sexta conexão era estabelecida, a mais antiga era perdida, algo que não foi possível contornar no momento.
 
 \section{Sensor de corrente Allegro ACS712}
 O medidor de corrente Allegro ACS712  \cite{Allegro} pode trabalhar com correntes de -30A à +30A   \cite{Allegro} , mais que suficiente para os padrões que usamos em estrutura de iluminação, aonde as correntes geralmente não são maiores que 10A. A seguir uma imagem do sensor, com a conexão de leitura.
@@ -219,8 +219,8 @@ O medidor de corrente Allegro ACS712  \cite{Allegro} pode trabalhar com corrente
 
 Como o sensor é invasivo, temos uma melhor leitura dos dados, gerando dados mais fidedignos ao consumo real.
 
-A taxa de amostragem durante o desenvolvimento teve uma pequena diferença se comparando com o resultado de um multimetro. Essa diferença ficou entre 55mA e 70mA. Isso acontece devido ao ruído do processador L106 e o ruído do próprio Allegro ACS712.
-
+A taxa de amostragem durante o desenvolvimento teve uma pequena diferença se comparando com o resultado de um multímetro. Essa diferença ficou entre 55mA e 70mA. Isso acontece devido ao ruído do processador L106 e o ruído do próprio Allegro ACS712.
+ 
 \section{Sensor de presença PIR DYP-ME003}
 
 Também utilizamos um sensor de presença modelo PIR DYP-ME003   \cite{openimpulse}
@@ -237,7 +237,7 @@ A abaixo uma imagem ilustrativa do dispostivo:
 O dispositivo oferece algumas caracteristicas interessantes ao projeto, como:
 
 \begin{itemize}
-    \item Distância ajustável de precisão até 7 metros;
+    \item Distância ajustável com precisão até 7 metros;
     \item Atraso de envio de pulso ajustável entre 5 e 200 ms;
 \end{itemize}
 
@@ -287,7 +287,7 @@ status: boolena; \\
 dimmer: int16;\\
 Consumo:int16; \\
 grupo:string;\\
-laststate: booelan;\\
+laststate: boolean;\\
 Hearbeat: date: \\
 PresenceSensor:boolean:\\
 \}
@@ -299,7 +299,7 @@ Na primeira inicialização do dispositivo, o rádio será configurado como AP e
 
 Com isso podemos utilizar um notebook ou smartphone para abrir a página de configuração do dispositivo.
 
-Há  um servidor WEB com acesso via porta 80 e a uma página HTTP que será utilizado para configurar esses dados de forma clara, pois a página não terá abas ou outras páginas de navegação.
+Há  um servidor WEB com acesso via porta 80 e a uma página HTTP que será utilizada para configurar os dados de forma clara, pois a página não terá abas ou outras páginas de navegação.
 
 Na página de configuração poderes setar as seguintes opções:
 \begin{itemize}
@@ -325,7 +325,7 @@ Abaixo o fluxo de inicialização e configuração do dispositivo.
 
 A integração com o serviço de fron-end é realizado através de servidor MQTT \cite{Novatec}. Através desse servidor são replicadas as configurações e informações capturadas durante o uso do dispositivo. 
 
-O firmware ao receber uma mensagem da plataforma via MQTT, valida se o comando solicitado existe e direciona para sua função especifica. Caso seja recebido algum valor inválido, é retorna um NACK.
+O firmware ao receber uma mensagem da plataforma via MQTT, válida se o comando solicitado existe e direciona para sua função específica. Caso seja recebido algum valor inválido, é retorna um NACK.
 
 Abaixo as opções disponíveis, bem seu respectivo byte de controle:
 
@@ -400,7 +400,7 @@ O retorno terá o total de consumo e minutos de utilização até o momento.
 
 Caso a luz esteja apagada no momento da solitação, será retornado o valor 0 (zero) para aplicação.
 
-O valor das variaveis são zeradas somente no momento que o dispositivo é desligado, nesse momento o valor é enviado o servidor e gravado em um banco de dados local, aonde sempre teremos os dois ultimos dados medidos;
+O valor das variáveis são zeradas somente no momento que o dispositivo é desligado, nesse momento o valor é enviado o servidor e gravado em um banco de dados local, aonde sempre teremos os dois ultimos dados medidos;
 
 \subsubsection{Verifica grupos}
 
@@ -429,7 +429,7 @@ Não é necessário reiniciar o dispositivo para aplicar o novo grupo.
 
 \subsubsection{Respostas autônomas}
 
-Foi criada uma thread para enviar os dados de consumo, sempre que as luzes estiverem acessas. 
+Foi criada uma ação autônoma para enviar os dados de consumo, sempre que as luzes estiverem acessas. 
 
 Serão enviados dados de consumo a cada 45 segundos, com as seguintes informações:
 
@@ -462,14 +462,14 @@ A cada ação recebida via MQTT ou GPIO,  envia uma mensagem para servidor com o
 O NodeMCU suporta atualização de firmware via rede wireless  \cite{espressif}, sendo assim não é preciso conectar um cabo usb para realizar o processo no mesmo. 
 Pensando nessa funcionalidade crei uma função para receber o firmeare a fazer a atualização.
 
-Ao receber a mensagem de atualizaçao disponível é comparada a versão local com a nova versão, caso seja diferente o dispositivo conecta-se a um repositório e realiza a cópia do novo arquivo, uma vez realizada a cópia, é checada a integridade através de uma comparação entre o hash MD5 do servidor com o hash MD5 do arquivo local, se a combinação for igual, então para os serviços são parados e é realizado uma cópia de backup do binário, e então aplicado o novo arquivo.
+Ao receber a mensagem de atualizaçao disponível é comparada a versão local com a nova versão, caso sejam diferentes o dispositivo conecta-se a um repositório e realiza a cópia do novo arquivo, uma vez realizada a cópia, é checada a integridade através de uma comparação entre o  MD5 do servidor com o hah MD5 do arquivo local, se a combinação for igual dos MD5, então para os serviços são parados e é realizado uma cópia de backup do binário, e então aplicado o novo arquivo.
 
 Após a atualização do firmware não é necessário reconfigurar o dispositivo, pois as configurações são salvas em uma parte segregada da memória e a leitura é realizada de forma automática pelo firmware.
 
 \section{Cenário de testes}
 Realizamos os testes durante 5 dias em duas salas de reunião. A salas ficam em um prédio comercial aonde as luzes são acessas todos os dias às 7 horas da manhã e são delisgadas às 19 horas.
 
-No local não havia a politica de desligar as luzes em momento de ociosidade da sala, ou seja a luz permancecia acessa do inicio da manhã até o inicio da noite, independente de estar sendo usada ou não. 
+No local não havia a politica de desligar as luzes em momento de ociosidade da sala, ou seja a luz permanecia acessa do início da manhã até o início da noite, independente de estar sendo usada ou não. 
 
 Na sala 1 não foi instalado o dispositivo, já na sala 2 o dispositivo ficou operacional por 5 dias.
 
@@ -484,7 +484,7 @@ Durante os testes tivemos uma economia próxima de 43\%, mas essa diferença se 
 
 Excluíndo esse cenário, no pior cenário teríamos um ganho de eficiêcia de 28,22\% em média por sala de reunião.
 
-No gráfico a seguir podemos ver de forma clara a diferença de consumo entre a sala gerenciada automaticamente e a sala sem o controle autonomo. 
+No gráfico a seguir podemos ver de forma clara a diferença de consumo entre a sala gerenciada automaticamente e a sala sem o controle autônomo. 
 
 \begin{figure}[!htb]
      \centering
@@ -499,17 +499,17 @@ No gráfico a seguir podemos ver de forma clara a diferença de consumo entre a 
 %---------- Terceiro Capitulo ----------
 \chapter{Conclusão}
 
-Vemos que a utilização dos recursos de IOT podem nos ajudar no gerenciamento de energia, como nesse caso aplicado a luzes, mas podendo ser ampliado para qualquer cénario que utilize energia elétrica como recurso principal.
+Vemos que a utilização dos recursos de IOT podem nos ajudar no gerenciamento de energia, como nesse caso aplicado à luzes, mas podendo ser ampliado para qualquer cénario que utilize energia elétrica como recurso principal.
 
-Com o decorrer do desenvolvimento do trabalho, conseguimos notar o quando disperdiçamos a energia elétrica, muitas vezes de forma inconsciente.   
+Com o decorrer do desenvolvimento do trabalho, conseguimos notar o quanto disperdiçamos a energia elétrica, muitas vezes de forma inconsciente.   
 
 As soluções de IOT trazem para nosso o cotidiano forma de automatizar decisões simples, que muitas vezes pela correria do dia a dia não conseguimos tomar ou mesmo não executamos por força do hábito. 
 
-Com a automatização de pequenas decisões, como apagar uma luz, desativar a energia de alguns pontos, podemos além usar os recursos com mais eficiência, podemos gerar uma redução de custo consideravel, como no exemplo aplicado durante o desenvolvimento aonde conseguimos uma redução de até 23\%, podem represetar um valor significativo para grandes corporações, prédios publicos ou mesmo residências.
+Com a automatização de pequenas decisões, como apagar uma luz, desativar a energia de alguns pontos, podemos além usar os recursos com mais eficiência, podemos gerar uma redução de custo considerável, como no exemplo aplicado durante o desenvolvimento aonde conseguimos uma redução de até 23\%, essa diferença pode represetar um valor significativo para grandes corporações, prédios publicos ou mesmo residências.
 
-Com a crescendo de acesso a conexões e diminuição do custo de desenvolvimento de hardware, em um futuro próximo poderemos ter automatizações como essas em todo tipo de prédio sem gerar maiores gastos para sua implantação, abrindo de forma abragante o mercado para nossas empresas e novas soluções de gerenciamento.
+Com a crescendo de acesso a conexões e diminuição do custo de desenvolvimento de hardware, em um futuro próximo poderemos ter automatizações como essas em todo tipo de prédio sem gerar maiores gastos para sua implantação, abrindo de forma abrangente o mercado para novas empresas e novas soluções de gerenciamento.
 
-Mostrando assim que temos uma mercado a ser explorado com grande potêncial de crescimento a medio e longo prazo.
+Mostrando assim que temos uma mercado a ser explorado com grande potêncial de crescimento a médio e longo prazo.
 
 \label{bibstart}
 \bibliography{reflatex} % geracao automatica das referencias a partir do arquivo reflatex.bib
