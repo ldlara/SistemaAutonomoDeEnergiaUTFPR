@@ -102,7 +102,7 @@ Agradeço ao meu colega Konrado Biernet por me ajudar a desenvolver esse trabalh
 
 %resumo
 \begin{resumo}
-Essa dissertação mostra de forma pratica o uso da internet da coisas para buscar eficiência no uso de recursos energicos voltados para gerenciamento de luz, aonde hoje temos um gasto substâncial e muitas vezes mal administrado.
+Essa dissertação mostra de forma pratica o uso da internet da coisas para buscar eficiência no uso de recursos energicos voltados para gerenciamento de luz, onde hoje, temos um gasto substâncial e muitas vezes mal administrado.
 \end{resumo}
 
 %abstract
@@ -114,7 +114,7 @@ This dissertation shows in a practical way the use of the internet of things for
 %\listadesiglas % geracao automatica da lista de siglasp
 \listadefiguras % geracao automatica da lista de figuras
 %\listadequadros % adivinhe :)
-\listadesiglas
+%\listadesiglas
 
 
 % sumario
@@ -132,21 +132,21 @@ Com o advento da internet e evolução, temos a possibilidade de criar dispositi
 
 Nesse trabalho iremos desmostrar um sistema inteligente de gerenciamento de luzes para comercio, empresas e mesmo casas.
 
-Alinhando assim o uso da tecnologia visando o uso conciência de energia elétrica, trazendo maior eficiência no consumo e de contra partinda uma redução de custos.
+Alinhando assim a tecnologia com o uso conciênte de energia elétrica, trazendo maior eficiência no consumo e de contra partinda uma redução de custos.
 
 \section{Motivação}
 
-Hoje temos um grande desperdicio de energia mantendo luzes acessos em lugares que não estão sendo usados, como sala de reunião, banheiros, iluminação ornamental interna e externa.
+Hoje temos um grande desperdicio de energia mantendo luzes acessas em lugares que não estão sendo usados, como sala de reunião, banheiros, iluminação ornamental, luzes internas e externas.
 
-A ideia com o uso desse dispositivo é mensurar o consumo e mostrar através de números a diferença de gastos, quando usamos de forma conciênte a energia elétrica, facilitando a tomada de decisão para a administração e também expandir o estudo futuramente sobre o controle sobre outros meios de consumo de energia.
+A ideia com o uso desse dispositivo é mensurar o consumo e mostrar através de números a diferença de gastos, quando usamos de forma conciênte a energia, facilitando a tomada de decisão para a administração e também expandir o estudo futuramente sobre o controle sobre outros meios de consumo de energia, planejanto ambientes inteligêntes, baseando em efiência energética.
 
 \section{Objetivos}
 
 \subsection{Objetivo Geral}
 
-A ideia principal é conseguir mostrar através de gráficos e números o quando é possível economizar e se tornar mais eficiente na questão de gastos referente a utilização de energia elétrica.
+A ideia principal é conseguir mostrar através de gráficos e números o quando é possível economizar e tornar-se mais eficiente na questão de gastos referente a utilização de energia elétrica.
 
-Ser uma ferramenta que auxilia no gerenciamento de gastos do estabelecimento e trazer previsões e manter históricos de consumo, afim de gerar informações para tomadas de decisão futuras.
+Ser uma ferramenta que auxilia no gerenciamento de gastos do estabelecimento, trazer previsões e manter históricos de consumo, afim de gerar informações para tomadas de decisão futuras.
 
 \subsection{Objetivos Específicos}
 
@@ -163,7 +163,7 @@ Ser uma ferramenta que auxilia no gerenciamento de gastos do estabelecimento e t
 \label{chap:desenv}
 
  
-Para o desenvolvimento do firmware do projeto foi utilizando a linguagem c++   \cite{Altabooks} e recursos HTTP.
+Para o desenvolvimento do firmware do projeto foi utilizando a linguagem C++   \cite{Altabooks} e recursos HTTP.
 
 Os insumos utilizados para o desenvolvimento do prototipo para testes foram:
 
@@ -174,12 +174,12 @@ Os insumos utilizados para o desenvolvimento do prototipo para testes foram:
         \item Sensor de presença PIR DYP-ME003
 \end{itemize}
 
-A seguir vamos apresentar algumas espeficicações técnicas dos recursos utilizados para o desenvolvimento do projeito.
+A seguir vamos apresentar algumas especificações técnicas dos recursos utilizados para o desenvolvimento do projeto.
 
-Essas especificações foram utilizadas como base na tomada de decisão sobre o uso dos insumos. 
+Essas dados foram utilizadas como base na tomada de decisão sobre o uso dos insumos. 
 
 \section{NodeMCU}
-Ao realizar uma busca em qualquer buscador on-line, vemos uma imensidade de referencias ao módulo NodeMCU (ESP8266).
+Ao realizar uma busca em qualquer sitio de busca on-line, encontramos uma grande quantidade referências ao módulo NodeMCU (ESP8266).
 
 Esse módulo se mostrou uma boa opção, devido ao requisitos técnicos listados abaixo.
 
@@ -189,9 +189,9 @@ Esse módulo se mostrou uma boa opção, devido ao requisitos técnicos listados
     \item CPU Tensilica L106 32-bit processor (80MHz ~ 160MHz )  \cite{Novatec}
     \item 4MB de armazenamento;
     \item Suporte aos modos Station/SoftAP/SoftAP+Station;\cite{espressif}
-    \item Autenticação WPA/WPA2 com encriptação WEP/TKIP/AES;\cite{espressif}
-    \item Supoter atualização OTA;\cite{espressif}
-    \item Procolocolos de Rede IPv4, TCP/UDP/HTTP;\cite{espressif}
+    \item Autenticação WEP/WPA/WPA2 com encriptação TKIP/AES;\cite{espressif}
+    \item Suporte atualização OTA;\cite{espressif}
+    \item Protocolos de Rede IPv4, TCP/UDP/HTTP;\cite{espressif}
 \end{itemize}
 
 Abaixo uma imagem mostrando o hardware.
@@ -203,12 +203,12 @@ Abaixo uma imagem mostrando o hardware.
 \label{NodeMCU}
 \end{figure}
 
-Durante o processo de desenvolvimento, identificamos uma limitação quando ao número de nós que podem se comunicar simultaneamente a um único NodeMCU. 
+Durante o processo de desenvolvimento, identificamos uma limitação quanto ao número de conexões simultaneas a um único NodeMCU. 
 
-Não foi possível estabelecer mais que 5 conexões simultaneas, quando a sexta conexão era estabelecida, a mais antiga era perdida. Algo que não possível contornar no momento.
+Não foi possível estabelecer mais que 5 conexões simultaneas, quando a sexta conexão era estabelecida, a mais antiga era perdida, algo que não possível contornar no momento.
 
 \section{Sensor de corrente Allegro ACS712}
-O medidor de corrente Allegro ACS712  \cite{Allegro} pode trabalhar com correntes de -30A à +30A   \cite{Allegro} amperes, mais que suficiente para os padrões que usamos em estrutura de iluminação, aonde as correntes geralmente não são maiores que 10A.
+O medidor de corrente Allegro ACS712  \cite{Allegro} pode trabalhar com correntes de -30A à +30A   \cite{Allegro} , mais que suficiente para os padrões que usamos em estrutura de iluminação, aonde as correntes geralmente não são maiores que 10A. A seguir uma imagem do sensor, com a conexão de leitura.
 
 \begin{figure}[!htb]
      \centering
@@ -219,12 +219,12 @@ O medidor de corrente Allegro ACS712  \cite{Allegro} pode trabalhar com corrente
 
 Como o sensor é invasivo, temos uma melhor leitura dos dados, gerando dados mais fidedignos ao consumo real.
 
-A taxa de amostragem durante o desenvolvimento teve uma pequena diferença se comparando com o resultado de um multimetro. Essa diferença ficou entre 55mA e 70mA. Isso acontece devido ao ruído do PIR DYP-ME003 e o ruído do próprio Allegro ACS712.
+A taxa de amostragem durante o desenvolvimento teve uma pequena diferença se comparando com o resultado de um multimetro. Essa diferença ficou entre 55mA e 70mA. Isso acontece devido ao ruído do processador L106 e o ruído do próprio Allegro ACS712.
 
 \section{Sensor de presença PIR DYP-ME003}
 
 Também utilizamos um sensor de presença modelo PIR DYP-ME003   \cite{openimpulse}
-para ter um controle automatico de uso de salas.
+para ter um controle automático da ação de acender e apagar as luzes da sala.
 
 A abaixo uma imagem ilustrativa do dispostivo:
 \begin{figure}[!htb]
@@ -234,15 +234,14 @@ A abaixo uma imagem ilustrativa do dispostivo:
      \label{fig:PIR DYP-ME003}
 \end{figure}
 
-O dispositivo oferece algumas caracteristicas interessantes ao projeto, como citados abaixo:
+O dispositivo oferece algumas caracteristicas interessantes ao projeto, como:
 
 \begin{itemize}
-    \item Distância ajustável entre de até 7 de precisão;
+    \item Distância ajustável de precisão até 7 metros;
     \item Atraso de envio de pulso ajustável entre 5 e 200 ms;
 \end{itemize}
 
-Com isso no momento que a pessoa entra da sala o sensor envia um sinal que acende as lampadas automaticamente e começa a bilhetagem das luzes naquela sala.
-
+Com isso no momento que a pessoa entra da sala o sensor envia um sinal  via GPIO,  acendendo as lâmpadas automaticamente e inicializa também a bilhetagem do consumo da sala.
 
 \section{Firmware}
 
@@ -261,6 +260,9 @@ O software está divido basicamente em duas frentes,
 
 \begin{itemize}
     \item Primeira Inicialização e configuração primária;
+\end{itemize}
+A segunda parte, Gerenciador de Funções, tem subfunções para realizar as ações necessárias.
+\begin{itemize}
     \item Gerenciador de funções;
     \subitem Controle de Luzes;
     \subitem Verificado de Luzes;
@@ -272,9 +274,9 @@ O software está divido basicamente em duas frentes,
     \subitem Atualização OTA;
 \end{itemize}
 
-O firmware foi divido em 2 etapas para facilitar o entendimento do funcionamento básico do mesmo, mas tempo real é executado somente um binário dentro do dispositivo.
+O firmware foi divido em 2 partes para facilitar o entendimento do funcionamento básico, mas em tempo real é executado somente um binário.
 
-Para a troca de mensagens definimos um formato JSON \cite{json-devmedia}. Esse formato permite a troca de mensagens de forma simples e sem exigir redes de alto desempenho para garantir uma entrega segura dos dados.
+Para a troca de mensagens definimos um formato JSON \cite{json-devmedia}. Esse formato permite a troca de mensagens de forma simples e sem exigir redes de alto desempenho para garantir uma entrega dos dados.
 
 O leiaute básico do JSON é:
 
@@ -293,23 +295,23 @@ PresenceSensor:boolean:\\
 \subsection{Primeira Inicialização e configuração primaria}
 
 
-Na primeira inicialização do nó o rádio será setado como AP e terá um servidor DHCP para fornecer 2 IP's classe C.
+Na primeira inicialização do dispositivo, o rádio será configurado como AP e terá um servidor DHCP para fornecer 2 IP's classe C.
 
-Com isso podemos utilizar um notebook ou smartphone para abrir a página de configuração do nó.
+Com isso podemos utilizar um notebook ou smartphone para abrir a página de configuração do dispositivo.
 
-Internamento foi criado um servidor WEB com acesso via porta 80 e a uma página HTTP que será utilizada para configurar esses dados de forma simples e clara, pois a página não terá aba ou outras páginas para navegar.
+Há  um servidor WEB com acesso via porta 80 e a uma página HTTP que será utilizado para configurar esses dados de forma clara, pois a página não terá abas ou outras páginas de navegação.
 
 Na página de configuração poderes setar as seguintes opções:
 \begin{itemize}
-    \item Nome do nó;
-    \item Grupo do nó;
+    \item Nome do dispositivo;
+    \item Grupo do dispositivo;
     \item Nome da Rede;
     \item Senha de acesso;
     \item Tipo de autenticação e padrão criptografia;
     \item Habilitar ou desabilitar o acesso via SSH;
 \end{itemize}
 
-Para em caso de falha na configuração ou qualquer outro problema temos um botão de reset através de uma GPIO  \cite{Elsevier}. com isso o firmware retorna o estado de fábrica, podemos assim realizar todo o processo de configuração novamente.
+Em caso de falha na configuração ou qualquer outra situação, existe um botão de reset, que através de uma GPIO \cite{Elsevier} realizar um limpeza nos parâmetros e seta a variavel booleana de inicio para verdade, com isso o firmware retorna o estado de fábrica, podemos assim realizar todo o processo de configuração novamente.
 
 Abaixo o fluxo de inicialização e configuração do dispositivo.
 \begin{figure}[!htb]
@@ -323,7 +325,7 @@ Abaixo o fluxo de inicialização e configuração do dispositivo.
 
 A integração com o serviço de fron-end é realizado através de servidor MQTT \cite{Novatec}. Através desse servidor são replicadas as configurações e informações capturadas durante o uso do dispositivo. 
 
-O firmware ao receber uma mensagem da plataforma via MQTT. Cada função tem uma byte definido, isso facilita o tratamento interno.
+O firmware ao receber uma mensagem da plataforma via MQTT, valida se o comando solicitado existe e direciona para sua função especifica. Caso seja recebido algum valor inválido, é retorna um NACK.
 
 Abaixo as opções disponíveis, bem seu respectivo byte de controle:
 
@@ -359,7 +361,7 @@ Os parâmetros esperados são:
     \item 1 - Acende a luz;
 \end{itemize}
 
-Antes de executar a ação é verificado o estado atual do nó, e a função é executada somente se o estado atual for diferente do novo estado esperado.
+Antes de executar a ação é verificado o estado atual do dispositivo, e a função é executada somente se o estado atual for diferente do novo estado recebido.
 
 Se o comando for executado com sucesso será enviado uma resposta de ACK para o gerenciador remoto, caso contrário o mesmo receberá um NACK.
 
@@ -387,29 +389,29 @@ No exemplo abaixo, recebemos uma mensagem 0x04 com o parâmetro 50. Então será
     }
 \end{center}
 
-Antes de executar a ação é verificado o estado atual do nó, e a função é executada somente se o estado atual for diferente do novo estado esperado.
+Antes de executar a ação é verificado o estado atual do dispositivo, e a função é executada somente se o estado atual for diferente do novo estado esperado.
 
 Se função receber algum valor fora do padrão delimitado, será enviado uma resposta de NACK para o servidor.
 
 \subsubsection{Consumo}
-O receber o byte de controle 0x05, verificamos o estado do nó, se o mesmo está ligado, consultamos o valor de consumo e retornamos para aplicação.
+O receber o byte de controle 0x05, verificamos o estado do dispositivo, se o mesmo está ligado, consultamos o valor de consumo e retornamos para aplicação.
 
 O retorno terá o total de consumo e minutos de utilização até o momento.
 
 Caso a luz esteja apagada no momento da solitação, será retornado o valor 0 (zero) para aplicação.
 
-O valor das variaveis são zeradas somente no momento que o nó é desligado, nesse momento o valor é enviado o servidor e gravamos o resultado em um banco local, aonde sempre teremos os dois ultimos dados medidos;
+O valor das variaveis são zeradas somente no momento que o dispositivo é desligado, nesse momento o valor é enviado o servidor e gravado em um banco de dados local, aonde sempre teremos os dois ultimos dados medidos;
 
 \subsubsection{Verifica grupos}
 
-Ao receber uma mensagem 0x06, o nó irá retornar os seguintes valores:
+Ao receber uma mensagem 0x06, o dispositivo irá retornar os seguintes valores:
 
 \begin{itemize}
-    \item Nome do nó;
-    \item Grupo do nó;
+    \item Nome do dispositivo;
+    \item Grupo do dispositivo;
     \item Nome da Rede utilizada;
-    \item Intesidade de sinal;
-    \item Data-hora do nó;
+    \item Intensidade de sinal;
+    \item Data-hora do dispositivo;
     \item Valor sensor de presença;
 \end{itemize}
 
@@ -423,23 +425,7 @@ Exemplo:
     }
 \end{center}
 
-O nó em cada ação recebida via MQTT ou GPIO,  envia uma mensagem para servidor com os seguintes dados;
-
-\begin{itemize}
-    \item Nome do nó;
-    \item IP do nó;
-    \item Mascará de rede;
-    \item gateway padrão;
-    \item Valor estado;
-    \item Valor dimmer;
-    \item Valor Consumo;
-    \item Grupo;
-    \item Ultimo estado;
-    \item Data-hora do nó;
-    \item Valor sensor de presença;
-    \item Tempo em atividade;
-    \item Versão do firmware;
-\end{itemize}
+Não é necessário reiniciar o dispositivo para aplicar o novo grupo.
 
 \subsubsection{Respostas autônomas}
 
@@ -448,19 +434,37 @@ Foi criada uma thread para enviar os dados de consumo, sempre que as luzes estiv
 Serão enviados dados de consumo a cada 45 segundos, com as seguintes informações:
 
 \begin{itemize}
-    \item Nome do nó;
+    \item Nome do dispositivo;
     \item Valor Consumo;
     \item Tempo de uso;
 \end{itemize}
 
+A cada ação recebida via MQTT ou GPIO,  envia uma mensagem para servidor com os seguintes dados;
+
+\begin{itemize}
+    \item Nome do dispositivo;
+    \item IP do dispositivo;
+    \item Mascará de rede;
+    \item gateway padrão;
+    \item Valor estado;
+    \item Valor dimmer;
+    \item Valor Consumo;
+    \item Grupo;
+    \item Ultimo estado;
+    \item Data-hora do dispositivo;
+    \item Valor sensor de presença;
+    \item Tempo em atividade;
+    \item Versão do firmware;
+\end{itemize}
 
 \subsection{Atualização OTA}
 
 O NodeMCU suporta atualização de firmware via rede wireless  \cite{espressif}, sendo assim não é preciso conectar um cabo usb para realizar o processo no mesmo. 
 Pensando nessa funcionalidade crei uma função para receber o firmeare a fazer a atualização.
 
-Ao receber a mensagem de atualizaçao disponível é comparada a versão local com a nova versão disponível, caso seja diferente o nó conecta-se a um repositorio e baixa o novo arquivo, uma vez realizado a cópia, ele verificar a integridade através de uma comparação entre o MD5 do servidor com o MD5 do arquivo local, se a combinação for igual, então para os serviços, atualiza o binário e reinica os serviços novamente.
-Após a atualização do firmware não é necessário reconfigurar o nó, pois as configurações são salvas em uma parte segregada da memória, fazendo isso um processo limpo do binário. 
+Ao receber a mensagem de atualizaçao disponível é comparada a versão local com a nova versão, caso seja diferente o dispositivo conecta-se a um repositório e realiza a cópia do novo arquivo, uma vez realizada a cópia, é checada a integridade através de uma comparação entre o hash MD5 do servidor com o hash MD5 do arquivo local, se a combinação for igual, então para os serviços são parados e é realizado uma cópia de backup do binário, e então aplicado o novo arquivo.
+
+Após a atualização do firmware não é necessário reconfigurar o dispositivo, pois as configurações são salvas em uma parte segregada da memória e a leitura é realizada de forma automática pelo firmware.
 
 \section{Cenário de testes}
 Realizamos os testes durante 5 dias em duas salas de reunião. A salas ficam em um prédio comercial aonde as luzes são acessas todos os dias às 7 horas da manhã e são delisgadas às 19 horas.
