@@ -27,6 +27,7 @@
 \usepackage{graphicx} % pacote grafico
 \usepackage{times} % fonte times
 \usepackage[final]{pdfpages} % adicao da ata
+\usepackage{pgfplots}
 
 %Podem utilizar GEOMETRY{...} para realizar pequenos ajustes das margens. Onde, left=esquerda, right=direita, top=superior, bottom=inferior. P.ex.:
 %\geometry{left=3.0cm,right=1.5cm,top=4cm,bottom=1cm} 
@@ -124,25 +125,23 @@ This dissertation shows in a practical way the use of the internet of things for
 
 Com o advento da internet e evolução, temos a possibilidade de criar dispositivos inteligentes \cite{Novatec} para nos auxiliar em situações corriqueiras, como controle de acesso, controle de frotas, gerenciamento de energia e água.
 
-Nesse trabalho iremos desmostrar um sistema inteliganete de gerenciamento de luzes para comercio, empresas e mesmo casas.
+Nesse trabalho iremos desmostrar um sistema inteligente de gerenciamento de luzes para comercio, empresas e mesmo casas.
 
-Para o desenvolvimento do recurso usaremos os itens:
+Alinhando assim o uso da tecnologia visando o uso conciência de energia elétrica, trazendo maior eficiência no consumo e de contra partinda uma redução de custos.
 
-\begin{itemize}
-       	\item ESP8266 - NomeMCU V3
-        \item Sensor de corrente Allegro ACS712 (ACS712ELCTR-30A-)
-        \item Servidor MQTT
-        \item Sensor de presença PIR DYP-ME003
-\end{itemize}
 \section{Motivação}
 
-Há um grande disperdício de energia em corporações e lojas devido  a falta de controle sobre o consumo de energia o que em analise calculista pode representar um impacto as contas da empresa e ao meio ambiente, pois hoje falamos muito em eficiente energética e isso pode trazer efeitos signiticativos para administração das empresas.
+Hoje temos um grande desperdicio de energia mantendo luzes acessos em lugares que não estão sendo usados, como sala de reunião, banheiros, iluminação ornamental interna e externa.
+
+A ideia com o uso desse dispositivo é mensurar o consumo e mostrar através de números a diferença de gastos, quando usamos de forma conciênte a energia elétrica, facilitando a tomada de decisão para a administração e também expandir o estudo futuramente sobre o controle sobre outros meios de consumo de energia.
 
 \section{Objetivos}
 
 \subsection{Objetivo Geral}
 
-O objetivo prinicipal é demonstrar e gerenciar o consumo de energia sobre fontes de iluminação visando diminuir o consumo e aumentar a eficiência do uso dos recursos energéticos. 
+A ideia principal é conseguir mostrar através de gráficos e números o quando é possível economizar e se tornar mais eficiente na questão de gastos referente a utilização de energia elétrica.
+
+Ser uma ferramenta que auxilia no gerenciamento de gastos do estabelecimento e trazer previsões e manter históricos de consumo, afim de gerar informações para tomadas de decisão futuras.
 
 \subsection{Objetivos Específicos}
 
@@ -159,14 +158,26 @@ O objetivo prinicipal é demonstrar e gerenciar o consumo de energia sobre fonte
 \label{chap:desenv}
 
  
-Para o desenvolvimento do projeto foi utilizando as  linguagens c++   \cite{Altabooks} e HTTP.
+Para o desenvolvimento do firmware do projeto foi utilizando a linguagem c++   \cite{Altabooks} e recursos HTTP.
 
-Durente o processo de desenvolvimento previmos a nomeação do módulo durante a primeira inicialização, após a configuração do SSID e senha da rede.
+Os insumos utilizados para o desenvolvimento do prototipo para testes foram:
 
-Com a rede configurada o nó começa a enviar dados da para um servidor MQTT   \cite{Novatec} para ser tratado no painel de gerenciamento. 
+\begin{itemize}
+       	\item ESP8266 - NomeMCU V3
+        \item Sensor de corrente Allegro ACS712 (ACS712ELCTR-30A-)
+        \item Servidor MQTT
+        \item Sensor de presença PIR DYP-ME003
+\end{itemize}
+
+A seguir vamos apresentar algumas espeficicações técnicas dos recursos utilizados para o desenvolvimento do projeito.
+
+Essas especificações foram utilizadas como base na tomada de decisão sobre o uso dos insumos. 
 
 \section{NodeMCU}
-Optei pelo uso do microcontrolador ESP8266, presente no módulo NODEMCU, que possui as seguites caracteristas:
+Ao realizar uma busca em qualquer buscador on-line, vemos uma imensidade de referencias ao módulo NodeMCU (ESP8266).
+
+Esse módulo se mostrou uma boa opção, devido ao requisitos técnicos listados abaixo.
+
 \begin{itemize}
     \item Certificação WIFI Alliance;  \cite{espressif}
     \item Protocolos 802.11 b/g/n;\cite{espressif}
@@ -178,45 +189,90 @@ Optei pelo uso do microcontrolador ESP8266, presente no módulo NODEMCU, que pos
     \item Procolocolos de Rede IPv4, TCP/UDP/HTTP;\cite{espressif}
 \end{itemize}
 
-Durante o processo de desenvolvimento do projeto foi encontrado uma limitação do uso de vários nós em rede MASH, pois há um limite de conexões simultaneas permitidas, ou seja se mais 5 nós tentarem se manter conectados a um NodeMCU a conexão mais antiga será derrubada, podendo gerar assim algumas falhas de tramissão de dados. 
+Abaixo uma imagem mostrando o hardware.
 
-Pois isso optei em não usar a rede MASH e manter todos os nós comunicando diretamente com o servidor MQTT.
+\begin{figure}[h!b]
+\centering 
+\includegraphics[scale=0.5]{nodemcu.jpg}
+\caption{NodeMCU V3}
+\label{NodeMCU}
+\end{figure}
 
-Caso a rede esteja indisponível por alguma motivo o nó poderá armazenar informações em sua memória de até 7 dias.
+Durante o processo de desenvolvimento, identificamos uma limitação quando ao número de nós que podem se comunicar simultaneamente a um único NodeMCU. 
+
+Não foi possível estabelecer mais que 5 conexões simultaneas, quando a sexta conexão era estabelecida, a mais antiga era perdida. Algo que não possível contornar no momento.
 
 \section{Sensor de corrente Allegro ACS712}
 O medidor de corrente Allegro ACS712  \cite{Allegro} pode trabalhar com correntes de -30A à +30A   \cite{Allegro} amperes, mais que suficiente para os padrões que usamos em estrutura de iluminação, aonde as correntes geralmente não são maiores que 10A.
 
-A taxa de amostragem durante o desenvolvimento deve um pequena diferença comparando com o resultado de multimetro. Essa diferença ficou entre 55mA e 70mA. Isso acontece devido ao ruído do L106 e o ruído do próprio Allegro ACS712.
+\begin{figure}[!htb]
+     \centering
+     \includegraphics[scale=0.6]{AllegroACS712.jpg}
+     \caption{Allegro ACS712}
+     \label{fig:AllegreoACS712}
+\end{figure}
 
-Para calular o consumo utilizamos algumas informações do padrão brasileiro, como a taxa de amostragem de 60Hz de nossas redes. Com base nessas informações e utilizando a biblioteca EmonLib, a biblioteca originalmente foi desenvolvida para Arduíno mas é compatível com o ESP8266 utilizado.
+Como o sensor é invasivo, temos uma melhor leitura dos dados, gerando dados mais fidedignos ao consumo real.
 
-Uma vez realizada a medição os dados são enviados via MQTT   \cite{Novatec}para serem exibidos no front-end.
+A taxa de amostragem durante o desenvolvimento teve uma pequena diferença se comparando com o resultado de um multimetro. Essa diferença ficou entre 55mA e 70mA. Isso acontece devido ao ruído do PIR DYP-ME003 e o ruído do próprio Allegro ACS712.
 
 \section{Sensor de presença PIR DYP-ME003}
 
 Também utilizamos um sensor de presença modelo PIR DYP-ME003   \cite{openimpulse}
-para ter um controle automatico de uso de salas. 
+para ter um controle automatico de uso de salas.
+
+A abaixo uma imagem ilustrativa do dispostivo:
+\begin{figure}[!htb]
+     \centering
+     \includegraphics[scale=0.6]{PIR.jpg}
+     \caption{PIR DYP-ME003}
+     \label{fig:PIR DYP-ME003}
+\end{figure}
+
+O dispositivo oferece algumas caracteristicas interessantes ao projeto, como citados abaixo:
+
+\begin{itemize}
+    \item Distância ajustável entre de até 7 de precisão;
+    \item Atraso de envio de pulso ajustável entre 5 e 200 ms;
+\end{itemize}
 
 Com isso no momento que a pessoa entra da sala o sensor envia um sinal que acende as lampadas automaticamente e começa a bilhetagem das luzes naquela sala.
 
 
 \section{Firmware}
 
-O firmware foi desenvolvimento utilizando liguagem c++. Os principais item que de trabalho do firmware são:
+Para desenvolvermos o firmware usamos a linguagem C++ \cite{Altabooks}. 
 
+Ao ligar o equipamento teremos uma flag booleana \cite{Elsevier}, que irá nos dizer se é ou não a primeira inicialização do dispositivo, conforme podemos ver no fluxo a seguir:
+
+\begin{figure}[!htb]
+     \centering
+     \includegraphics[scale=1]{Primeira_Inicializacao.png}
+     \caption{Fluxo Inicialização}
+     \label{}
+\end{figure}
+
+O software está divido basicamente em duas frentes,
 
 \begin{itemize}
-    \item Primeira Inicialização e configuração primaria;
+    \item Primeira Inicialização e configuração primária;
     \item Gerenciador de funções;
-    \item Atualização OTA;
+    \subitem Controle de Luzes;
+    \subitem Verificado de Luzes;
+    \subitem Intensidade;
+    \subitem Consumo;
+    \subitem Verificar Grupos;
+    \subitem Trocar de Grupo;
+    \subitem Respostas Autônomas;
+    \subitem Atualização OTA;
 \end{itemize}
 
-O firmware foi divido em 3 etapas para facilitar o entendimento do funcionamento básico do mesmo, mas tempo real é executado somente um binário dentro do dispositivo.
+O firmware foi divido em 2 etapas para facilitar o entendimento do funcionamento básico do mesmo, mas tempo real é executado somente um binário dentro do dispositivo.
 
-Todas as mensagens trocas entre nó e servidor são no formato JSON  \cite{json-devmedia}.
+Para a troca de mensagens definimos um formato JSON \cite{json-devmedia}. Esse formato permite a troca de mensagens de forma simples e sem exigir redes de alto desempenho para garantir uma entrega segura dos dados.
 
-Como no exemplo abaixo:
+O leiaute básico do JSON é:
+
 \begin{center}
 \textit
 sensor\{\\ 
@@ -229,10 +285,11 @@ Hearbeat: date: \\
 PresenceSensor:boolean:\\
 \}
 \end{center}
-
-
 \subsection{Primeira Inicialização e configuração primaria}
-Para a primeira inicialização do nó o rádio será setado como AP e terá um servidor DHCP para fornecer 2 IP's classe C.
+
+
+Na primeira inicialização do nó o rádio será setado como AP e terá um servidor DHCP para fornecer 2 IP's classe C.
+
 Com isso podemos utilizar um notebook ou smartphone para abrir a página de configuração do nó.
 
 Internamento foi criado um servidor WEB com acesso via porta 80 e a uma página HTTP que será utilizada para configurar esses dados de forma simples e clara, pois a página não terá aba ou outras páginas para navegar.
@@ -249,63 +306,109 @@ Na página de configuração poderes setar as seguintes opções:
 
 Para em caso de falha na configuração ou qualquer outro problema temos um botão de reset através de uma GPIO  \cite{Elsevier}. com isso o firmware retorna o estado de fábrica, podemos assim realizar todo o processo de configuração novamente.
 
+Abaixo o fluxo de inicialização e configuração do dispositivo.
+\begin{figure}[!htb]
+     \centering
+     \includegraphics[scale=1]{Ini_flux.png}
+     \caption{Processo de inicialização e gravação dos dados iniciais}
+     \label{}
+\end{figure}
+
 \subsection{Gerenciador de funções}
 
-Para o gerenciamento utilizamos um serviro MQTT para troca das mensagens entre nó e a plataforma de gerenciamento. 
+A integração com o serviço de fron-end é realizado através de servidor MQTT \cite{Novatec}. Através desse servidor são replicadas as configurações e informações capturadas durante o uso do dispositivo. 
 
-O firmware ao receber uma mensagem da plataforma verifica a qual grupo perterce, que no caso pode ser do tipo:
+O firmware ao receber uma mensagem da plataforma via MQTT. Cada função tem uma byte definido, isso facilita o tratamento interno.
+
+Abaixo as opções disponíveis, bem seu respectivo byte de controle:
 
 \begin{itemize}
-    \item Acender/Apagar luz;
-    \item Estado na Luz;
-    \item Controlar intensidade da Luz;
-    \item Consumo;
-    \item Verificar grupo;
-    \item Trocar de grupo;
-    \item Respostas autônomas;
+    \item Acender/Apagar luz = 0x02;
+    \item Estado na Luz=0x03;
+    \item Controlar intensidade da Luz = 0x04;
+    \item Consumo = 0x05;
+    \item Verificar grupo 0x06;
+    \item Trocar de grupo = 0x07;
+    \item Respostas autônomas 0x08;
 \end{itemize}
 
 \subsubsection{Acender/Apagar luz}
-Para a função interação de acender e apagar a luz trabalhamos com o estado do bit, no caso 0 e 1 aonde:
 
+Ao receber o byte 0x02 via servidor verificamos se o parâmetro necessário foi passado corretamente. A função espera receber um valor INT com valores 0 ou 1.
+
+Caso a interação seja via GPIO, o firmware irá montar a mensagem e passar os valores corretos a função para que seja realizada a ação esperada.
+
+Os parâmetros esperados são:
 \begin{itemize}
-    \item O Apaga a luz;
-    \item 1 Acende a luz;
+    \item O - Apaga a luz;
+    \item 1 - Acende a luz;
 \end{itemize}
 
-Esse processo é simples de ser realizado e ao executar com sucesso o comando é enviado uma resposta de ACK para o gerenciador remoto, caso contrário o mesmo receberá um NACK.
+Antes de executar a ação é verificado o estado atual do nó, e a função é executada somente se o estado atual for diferente do novo estado esperado.
+
+Se o comando for executado com sucesso será enviado uma resposta de ACK para o gerenciador remoto, caso contrário o mesmo receberá um NACK.
+
+Se o parâmetro informado for inválido, será retornado um NACK.
 
 \subsubsection{Estado na Luz}
 
-Essa é uma função de retorno de status do nó para o gerenciador remoto. Nessa função pegamos o status da lampada, acessa ou apagada e retornamos de forma binária para o servidor.
+No momento que o firmware receber o byte de controle 0x03, irá retornar o estado atual das luz no formado binário aonde:
+
+\begin{itemize}
+    \item O - Luz apagada;
+    \item 1 - Luz acessa;
+\end{itemize}
 
 \subsubsection{Controlar intensidade da Luz}
-Nesse caso utilizamos a mesma função de Acender ou Apagar a luz, mas verificamos se a mensagem recebida é maior que 0 e menor 99, caso seja verdade pegamos o valor recebido e aplicamos como porcentagem sobre 100\% de forma a adequar a intensidade da luz do nó especifico.
+A função para controlar a intesidade de luz tem como definição byte 0x04, e tem como parâmetro uma váriavel int que deve ter o valor entre 2 e 99.
+
+Ao receber esse valor é aplicado então sobre as luzes um dimmer, para mudar a intesidade da luz. O valor recebido é aplicado em formato de porcentagem.
+
+No exemplo abaixo, recebemos uma mensagem 0x04 com o parâmetro 50. Então será aplicado a luz 50\% de intensidade.
+
+\begin{center}
+    \textit{
+    Luz =  50\%
+    }
+\end{center}
+
+Antes de executar a ação é verificado o estado atual do nó, e a função é executada somente se o estado atual for diferente do novo estado esperado.
+
+Se função receber algum valor fora do padrão delimitado, será enviado uma resposta de NACK para o servidor.
 
 \subsubsection{Consumo}
-Para a função de consumo, pegamos o valor do ponteiro double e retornamos para o servidor remoto.
+O receber o byte de controle 0x05, verificamos o estado do nó, se o mesmo está ligado, consultamos o valor de consumo e retornamos para aplicação.
 
-Esse valor só é zerado no momento que o nó é desligado, nesse momento o valor é enviado o servidor para ser inserida no banco de dados e consumida pelo gerenciador remoto.
+O retorno terá o total de consumo e minutos de utilização até o momento.
+
+Caso a luz esteja apagada no momento da solitação, será retornado o valor 0 (zero) para aplicação.
+
+O valor das variaveis são zeradas somente no momento que o nó é desligado, nesse momento o valor é enviado o servidor e gravamos o resultado em um banco local, aonde sempre teremos os dois ultimos dados medidos;
 
 \subsubsection{Verifica grupos}
 
-Ao receber uma mensagem nessa função, o mesmo irá verificar se é pertecendo ao grupo e retornará as seguintes informações:
+Ao receber uma mensagem 0x06, o nó irá retornar os seguintes valores:
 
 \begin{itemize}
-    \item Valor estado;
-    \item Valor dimmer;
-    \item Valor Consumo;
-    \item Grupo;
-    \item Ultimo estado;
+    \item Nome do nó;
+    \item Grupo do nó;
+    \item Nome da Rede utilizada;
+    \item Intesidade de sinal;
     \item Data-hora do nó;
     \item Valor sensor de presença;
 \end{itemize}
 
 \subsubsection{Trocar de Grupo}
-Ao receber a mensagem para trocar de grupo o nós irá verificar o nó o mesmo está e se for o valor recebido for diferente do atual, ele irá armazenar o valor atual em um arquivo interno e atualizar o valor para o novo grupo recebido, enviando em seguida uma mansagem de ACK para o servidor remoto, caso não seja executado o comando ele retornará um NACK par o servidor.
+Ao receber a mensagem 0x07 para troca de grupo o dispositivo irá verificar se o grupo atual e igual ao novo grupo recebido, caso seja diferente aplicará o novo ao dispositivo.
+A função espera uma váriavel string\cite{Altabooks} como parâmetro.
+Exemplo:
+\begin{center}
+    \textit{
+    0x07 "grupo 2"
+    }
+\end{center}
 
-\subsubsection{Respostas autônomas}
-O nó em cada ação recebida via MQTT ou GPIO, o nó envia uma mensagem para servidor com os seguintes dados;
+O nó em cada ação recebida via MQTT ou GPIO,  envia uma mensagem para servidor com os seguintes dados;
 
 \begin{itemize}
     \item Nome do nó;
@@ -330,6 +433,37 @@ Pensando nessa funcionalidade crei uma função para receber o firmeare a fazer 
 
 Ao receber a mensagem de atualizaçao disponível é comparada a versão local com a nova versão disponível, caso seja diferente o nó conecta-se a um repositorio e baixa o novo arquivo, uma vez realizado a cópia, ele verificar a integridade através de uma comparação entre o MD5 do servidor com o MD5 do arquivo local, se a combinação for igual, então para os serviços, atualiza o binário e reinica os serviços novamente.
 Após a atualização do firmware não é necessário reconfigurar o nó, pois as configurações são salvas em uma parte segregada da memória, fazendo isso um processo limpo do binário. 
+
+\section{Cenário de testes}
+Realizamos os testes durante 5 dias em duas salas de reunião. A salas ficam em um prédio comercial aonde as luzes são acessas todos os dias às 7 horas da manhã e são delisgadas às 19 horas.
+
+No local não havia a politica de desligar as luzes em momento de ociosidade da sala, ou seja a luz permancecia acessa do inicio da manhã até o inicio da noite, independente de estar sendo usada ou não. 
+
+Na sala 1 não foi instalado o dispositivo, já na sala 2 o dispositivo ficou operacional por 5 dias.
+
+Foram 120 horas de amostras coletadas durante esse periodo, dessas 120 horas, temos 60 horas da sala 1 e mais 60 horas da sala 2.
+
+Durante os testes tivemos uma economia próxima de 43\%.
+
+Para tal diferença podemos acatar o seguinte cenário:
+
+\begin{itemize}
+    \item Das 7 às 8 e das 18 às 19 não são realizadas reuniões;
+    \item Entre 12 e 13:30 a sala também não é utilizada;
+\end{itemize}
+
+Se essas variaveis não existissem, no pior cenário teríamos um ganho de eficiêcia de 28,22\% em média por sala de reunião.
+
+No gráfico abaixo podemos ver de forma clara a diferença de consumo entre a sala gerenciada automaticamente e a sala sem o controle autonomo. 
+
+\begin{figure}[!htb]
+     \centering
+     \includegraphics[scale=1]{g2.png}
+     \caption{Diferente de consumo entre salas 1 e 2}
+     \label{}
+\end{figure}
+
+
 
 
 %---------- Terceiro Capitulo ----------
